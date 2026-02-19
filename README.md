@@ -19,4 +19,4 @@ Para cada estructura se validarán los escenarios críticos de cada uno de los p
 * **Práctica:** [Playlist de Estructuras de Datos - Makigas](https://www.youtube.com/watch?v=oQ0WkIdr73E&list=PLTd5ehIj0goMTSK7RRAPBF4wP-Nj5DRvT).
 
 ---
-*Log de progreso: `[=======---] 70%`
+*Log de progreso: `[=======---] 70%`*

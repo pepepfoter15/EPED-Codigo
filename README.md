@@ -20,3 +20,5 @@ Para cada estructura se validarán los escenarios críticos de cada uno de los p
 
 ---
 *Log de progreso: `[=======---] 70%`*
+
+**Copyright (c) 2026 José Carlos Rodríguez Cañas**

@@ -1,99 +1,99 @@
-# Listas Enlazadas - Comparación C vs Java
+# Listas Enlazadas - Implementación en C y Java
 
-Este directorio contiene una implementación de listas enlazadas en ambos lenguajes C y Java, permitiendo entender cómo funcionan los punteros en C y cómo se traducen a referencias en Java.
+## Resumen
+
+Implementación de lista enlazada que gestiona una colección de libros. Comparación entre C (gestión manual de memoria) y Java (gestión automática).
 
 ## Estructura de Archivos
 
 ### C/
-- **lista.h**: Definición de estructuras (Nodo, Lista) y declaración de funciones
-- **lista.c**: Implementación de operaciones de lista enlazada
-- **libro.h**: Definición de estructura Libro
-- **libro.c**: Funciones auxiliares para Libro
-- **main.c**: Programa principal con menú interactivo
+- lista.h: Definición de estructuras (Nodo, Lista)
+- lista.c: Implementación de operaciones
+- libro.h: Definición de estructura Libro
+- libro.c: Funciones auxiliares
+- main.c: Programa principal
 
 ### Java/
-- **Nodo.java**: Clase equivalente a `struct Nodo` en C
-- **Libro.java**: Clase equivalente a `struct Libro` en C
-- **Lista.java**: Clase con los métodos equivalentes de lista.c
-- **Main.java**: Programa principal equivalente a main.c
+- Libro.java: Clase que representa un Libro
+- Lista.java: Clase que implementa la lista enlazada
+- Main.java: Programa principal
 
-## Conceptos Clave: Punteros en C vs Referencias en Java
+## Diferencias de Implementación
 
-### En C (Gestión Manual de Memoria)
+### En C - Gestión Manual de Memoria
 ```c
-// Creación dinámica de nodo
 Nodo *nodo = (Nodo*)malloc(sizeof(Nodo));  // Asignar memoria
-nodo->siguiente = NULL;                     // Acceso mediante puntero
-free(nodo);                                 // Liberar memoria manualmente
+nodo->siguiente = NULL;                     // Usar operador ->
+free(nodo);                                 // Liberar (OBLIGATORIO)
 ```
 
-### En Java (Gestión Automática de Memoria)
+**Puntos importantes:**
+- Debes usar `malloc()` para crear nodos dinámicamente
+- Usa operador `->` para acceder a campos de punteros
+- SIEMPRE debes liberar memoria con `free()` para evitar memory leaks
+- Gestiona manualmente la variable `longitud`
+
+### En Java - Gestión Automática
 ```java
-// Creación de nodo
-Nodo nodo = new Nodo(libro);  // Crear objeto (nueva referencia)
-nodo.setSiguiente(null);       // Acceso mediante referencia
-// No necesitas liberar memoria - el Garbage Collector lo hace
+Nodo nodo = new Nodo(libro);    // Crear objeto automáticamente
+nodo.siguiente = null;          // Usar operador .
+// GC libera automáticamente cuando no hay referencias
 ```
 
-## Diferencias Importantes
+**Puntos importantes:**
+- El operador `new` crea objetos en memoria dinámicamente
+- Usa operador `.` para acceder a atributos
+- El Garbage Collector libera memoria automáticamente
+- Las referencias null se manejan automáticamente
 
-| Característica | C | Java |
-|---|---|---|
-| **Memoria** | Manual (malloc/free) | Automática (GC) |
-| **Punteros** | Explícitos (`*`, `->`) | Implícitos (referencias) |
-| **Acceso a campos** | `ptr->campo` | `obj.getField()` |
-| **Null** | `NULL` | `null` |
-| **Tipos** | `struct` | `class` |
-| **Métodos** | Funciones externas | Métodos de clase |
+## Comparación Técnica
 
-## Cómo Compilar y Ejecutar
+| Aspecto | C | Java |
+|---------|---|------|
+| Memoria | Manual (malloc/free) | Automática (GC) |
+| Punteros | Explícitos (*->) | Implícitos (referencias) |
+| Nulo | NULL | null |
+| Tipos | struct | class |
+| Compilación | gcc | javac |
 
-### C
+## Compilación y Ejecución
+
+**C:**
 ```bash
-cd C/
 gcc -o listas_enlazadas main.c lista.c libro.c
 ./listas_enlazadas
 ```
 
-### Java
+**Java:**
 ```bash
-cd Java/
 javac *.java
 java Main
 ```
 
-## Funcionalidades
+## Complejidad de Operaciones
 
-Ambas implementaciones proporcionan:
+| Operación | Complejidad |
+|-----------|-------------|
+| Insertar al principio | O(1) |
+| Insertar al final | O(n) |
+| Eliminar al principio | O(1) |
+| Eliminar al final | O(n) |
+| Obtener elemento en posición n | O(n) |
+| Contar elementos | O(1) |
 
-1. **Inserción**
-   - Al principio: O(1)
-   - Al final: O(n)
-   - Después de posición `n`: O(n)
+## Consideraciones del Código
 
-2. **Eliminación**
-   - Principio: O(1)
-   - Último: O(n)
-   - Elemento en posición: O(n)
+**En C:**
+- La función `crearNodo()` copia los strings del libro usando `strncpy()` para evitar buffer overflows
+- La eliminación de nodos incluye desconexiones explícitas antes de liberar
+- El campo `longitud` en Lista debe actualizarse en cada operación
 
-3. **Búsqueda**
-   - Obtener elemento en posición `n`: O(n)
-   - Contar elementos: O(1)
-   - Verificar si está vacía: O(1)
+**En Java:**
+- La clase Nodo está definida como una clase interna privada de Lista
+- Los métodos constructores deben inicializar correctamente los atributos
+- La clase Libro tiene constructores por defecto y con parámetros para flexibilidad
+- Los getters y setters permiten acceso controlado a los datos
 
-4. **Visualización**
-   - Imprimir todos los elementos
+---
 
-## Notas Sobre Punteros
-
-En C, los punteros son fundamentales:
-- Representan direcciones de memoria
-- Permiten acceso indirecto a datos
-- Requieren gestión manual de memoria
-- Más control pero más responsabilidad
-
-En Java, las referencias abstraen los punteros:
-- Son similares conceptualmente pero transparentes
-- El compilador y JVM manejan la dirección internamente
-- No hay acceso directo a memoria
-- Más seguro, menos control
+**Copyright (c) 2026 José Carlos Rodríguez Cañas**

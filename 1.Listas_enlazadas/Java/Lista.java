@@ -10,13 +10,6 @@ public class Lista {
 
     // Instanciar la cabeza de la lista
     private Nodo cabeza;
-    private int longitud;
-
-    // Constructor per defecto
-    public Lista() {
-        this.cabeza = null;
-        this.longitud = 0;
-    }
 
     // Crear la clase nodo con un valor infinito para poder ir almacenando los libros
     private class Nodo{
@@ -156,11 +149,11 @@ public class Lista {
     // Imprimir todos los libros de la lista
     public void imprimirLista() {
         int n = contar();
-        if (n == 0) {
+        if (n == 0) { // si la lista está vacía, no hay nada que imprimir
             System.out.println("La lista está vacía.");
             return;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // Recorremos la lista y vamos imprimiendo cada libro
             Libro l = obtener(i);
             if (l != null) {
                 System.out.printf("[%d] Titulo: %s | Autor: %s | ISBN: %s%n", i, l.getTitulo(), l.getAutor(), l.getIsbn());

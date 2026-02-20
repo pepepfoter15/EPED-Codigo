@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h> // Para utilizar malloc y sus funciones de memoria dinámicas nos hace falta esta librería.
+#include <stdio.h>
 
 // Función para crear un nodo
 Nodo* crearNodo(Libro* libro){
@@ -30,6 +31,20 @@ Nodo* crearNodo(Libro* libro){
 
     nodo->siguiente = NULL;
     return nodo;
+}
+
+// Función para imprimir todos los libros usando obtener()
+void imprimirLista(Lista *lst) {
+    int n = contar(lst);
+    if (n == 0) {
+        printf("La lista está vacía.\n");
+        return;
+    }
+    for (int i = 0; i < n; ++i) {
+        Libro *l = obtener(i, lst);
+        if (l)
+            printf("[%d] Titulo: %s | Autor: %s | ISBN: %s\n", i, l->titulo, l->autor, l->isbn);
+    }
 }
 
 // Función para destruir un nodo que no queramos en memoria 

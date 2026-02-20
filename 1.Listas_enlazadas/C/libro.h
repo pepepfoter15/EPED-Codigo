@@ -17,4 +17,7 @@ typedef struct Libro {
     char isbn[50];
 } Libro;
 
+// Leer un libro desde stdin
+void leerLibro(Libro *lib);
+
 #endif /* libro_h */

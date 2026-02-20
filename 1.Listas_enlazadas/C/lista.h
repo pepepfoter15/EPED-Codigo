@@ -44,4 +44,7 @@ void eliminarPrincipio(Lista* lista);
 void eliminarUltimo(Lista* lista);
 void eliminarElemento(int n, Lista *lista);
 
+// Imprimir todos los libros de la lista
+void imprimirLista(Lista *lst);
+
 #endif /* lista_h */

@@ -72,14 +72,42 @@ java Main
 
 ## Complejidad de Operaciones
 
-| Operación | Complejidad |
-|-----------|-------------|
-| Insertar al principio | O(1) |
-| Insertar al final | O(n) |
-| Eliminar al principio | O(1) |
-| Eliminar al final | O(n) |
-| Obtener elemento en posición n | O(n) |
-| Contar elementos | O(1) |
+### ¿Qué significa la complejidad?
+
+- **O(1)** = Tiempo **CONSTANTE** - La operación tarda **siempre lo mismo**, sin importar cuántos elementos haya
+- **O(n)** = Tiempo **LINEAL** - La operación tarda **más cuanto más elementos haya** (tienes que recorrer la lista)
+
+### Tabla de Complejidad
+
+| Operación | Complejidad | Explicación |
+|-----------|-------------|-------------|
+| **Insertar al principio** | O(1) | Solo cambias el primer nodo. **Siempre tarda lo mismo**, sin recorrer |
+| **Insertar al final** | O(n) | Tienes que **recorrer toda la lista** hasta el final. Más elementos = más tiempo |
+| **Eliminar al principio** | O(1) | Solo quitas el primer nodo. **Siempre tarda lo mismo**, sin buscar |
+| **Eliminar al final** | O(n) | Tienes que **recorrer toda la lista** para encontrar el penúltimo nodo |
+| **Obtener elemento en posición n** | O(n) | Tienes que **recorrer desde el principio** hasta la posición deseada |
+| **Contar elementos** | O(1) | Solo lees una variable guardada. **Instantáneo** |
+
+### Ejemplo Práctico
+
+```
+Lista:  [1] → [2] → [3] → [4] → [5]
+
+INSERTAR AL PRINCIPIO:
+[0] → [1] → [2] → [3] → [4] → [5]
+Tiempo: ~0.001 ms (solo cambias 1 referencia, sin recorrer)
+
+INSERTAR AL FINAL:
+[1] → [2] → [3] → [4] → [5] → [6]
+Procesamiento: [1]✓ → [2]✓ → [3]✓ → [4]✓ → [5]✓ → insertar
+Tiempo: ~0.005 ms (recorres 5 elementos para llegar al final)
+
+Si la lista tuviera 1.000.000 elementos:
+INSERTAR AL PRINCIPIO: ~0.001 ms (igual que antes - O(1))
+INSERTAR AL FINAL: ~5.000 ms (¡5000 veces más lento! - O(n))
+```
+
+Por eso las colas son más eficientes que las listas para insertar al final: las colas tienen un puntero directo al final.
 
 ## Consideraciones del Código
 

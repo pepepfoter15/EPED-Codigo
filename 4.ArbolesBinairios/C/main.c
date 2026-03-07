@@ -14,7 +14,7 @@ typedef struct Nodo {
     int valor;
     struct Nodo* izquierdo;
     struct Nodo* derecho;
-    struct Nodo* padre
+    struct Nodo* padre;
 } Nodo;
 
 // Definición del tipo de dato para el árbol binario
